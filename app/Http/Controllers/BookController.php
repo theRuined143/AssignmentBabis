@@ -100,8 +100,6 @@ class BookController extends Controller
     public function edit($id)
     {
         //
-        $book = auth()->user()->books()->find($id);
-        return view('books.edit', compact('book'));
 
     }
 
@@ -130,13 +128,11 @@ class BookController extends Controller
             ], 400);
         }
  
-        //$updated = $book->fill($request->all())->save();
         $book->title = $request->title;
         $book->author = $request->author;
         $book->date_published = $request->date_published;
         $book->overview = $request->overview;
         $book->isbn = $request->isbn;
-        // $updated = $book->save();
 
  
         if (auth()->user()->books()->save($book))
